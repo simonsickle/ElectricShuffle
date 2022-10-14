@@ -15,7 +15,7 @@ I'm not responsible for bricked devices, dead SD cards, thermonuclear war, or yo
 
 ### Running ElectricShuffle
 1. Run the program `./ElectricShuffle.py`
-1. Log in by clicking the link (or copying it to your browser). Once logged in return to the terminal. (Once per environment)
+1. Log in by clicking the link (or copying it to your browser). Once logged in return to the terminal.
 1. Pick a playlist to shuffle
 1. Confirm that is the playlist you want
 1. Go enjoy some tunes! Notice your new playlist which is a copy of your current one but with an " - Electrified" suffix. This is the shuffled one.
