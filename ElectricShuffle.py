@@ -41,22 +41,24 @@ if not session.check_login():
         out_file.write(json.dumps(session_dict))
 
 ### Now that session is handled, get playlists
-playlists = session.user.playlists()
-print("Please select the playlist you wish to shuffle by intering it's number below")
-for idx, playlist in enumerate(playlists):
-    print(f"  [{idx+1}] {playlist.name}")
 
+playlists_no_e = session.user.playlists()
+for playlist in playlists_no_e:
+    if("- Electrified" in playlist.name):
+        playlists_no_e.remove(playlist)
+print("Please select the playlist you wish to shuffle by intering it's number below")
+for idx, playlist in enumerate(playlists_no_e):
+    print(f"  [{idx+1}] {playlist.name}")
 # Get playlists on user account
 playlist_num = int(input("Playlist Number: ")) - 1
 
-selected_playlist = playlists[playlist_num]
+selected_playlist = playlists_no_e[playlist_num]
 print(f"Electric shuffle {selected_playlist.name}?")
 should_continue = bool(input("Continue (Yes/No): "))
 
 ### Allow bailing
 if not should_continue:
     exit(1)
-
 
 ### Do the thing
 tracklist = selected_playlist.tracks()
@@ -67,9 +69,12 @@ for track in tracklist:
 
 ### Signify that this is a copy for the user
 shuffled_name = f"{selected_playlist.name} - Electrified"
+
+# Get all playlists including - Electrified
+playlists = session.user.playlists()
 for playlist in playlists:
     ### Delete an existing version of this playlist if we are re-rolling
-    if playlist.name is shuffled_name:
+    if playlist.name == shuffled_name:
         playlist.delete()
 
 ## Create (or re create) the electric playlist
@@ -78,3 +83,4 @@ new_playlist = session.user.create_playlist(shuffled_name, selected_playlist.des
 ## Add the beautiful music after a quick shuffle
 random.shuffle(track_ids)
 new_playlist.add(track_ids)
+print("Shuffling complete")
