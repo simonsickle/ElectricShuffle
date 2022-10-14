@@ -42,10 +42,11 @@ if not session.check_login():
 
 ### Now that session is handled, get playlists
 playlists = session.user.playlists()
+print(playlists)
 print("Please select the playlist you wish to shuffle by intering it's number below")
 for idx, playlist in enumerate(playlists):
-    print(f"  [{idx+1}] {playlist.name}")
-
+    if("- Electrified" not in playlist.name):
+       print(f"  [{idx+1}] {playlist.name}")
 # Get playlists on user account
 playlist_num = int(input("Playlist Number: ")) - 1
 
@@ -56,7 +57,6 @@ should_continue = bool(input("Continue (Yes/No): "))
 ### Allow bailing
 if not should_continue:
     exit(1)
-
 
 ### Do the thing
 tracklist = selected_playlist.tracks()
@@ -69,7 +69,7 @@ for track in tracklist:
 shuffled_name = f"{selected_playlist.name} - Electrified"
 for playlist in playlists:
     ### Delete an existing version of this playlist if we are re-rolling
-    if playlist.name is shuffled_name:
+    if playlist.name == shuffled_name:
         playlist.delete()
 
 ## Create (or re create) the electric playlist
