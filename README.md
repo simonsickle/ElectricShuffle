@@ -21,7 +21,8 @@ I'm not responsible for bricked devices, dead SD cards, thermonuclear war, or yo
 1. Go enjoy some tunes! Notice your new playlist which is a copy of your current one but with an " - Electrified" suffix. This is the shuffled one.
 
 ### Running ElectricShuffleAll
-This script requires no human intervention beyond the initial login. Run it one time manually to login, then automate to your heart's content. 
+This script requires no human intervention beyond the initial login. Run it one time manually to login, then automate to your heart's content.
+
 **Note:** On linux VMs there is an issue where the tidalapi package sends requests too fast for the tidal servers. Adding time.sleep(1) to the tidalapi playlist.py \__init__ resolves the issue.
 
 1. Run the program `./ElectricShuffleAll.py`
