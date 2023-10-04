@@ -24,7 +24,7 @@ secretstorage==3.3.3
 simplejson==3.17.6
 Sphinx==5.1.1
 toml==0.10.2
-tornado==6.2
+tornado==6.3.3
 trove_classifiers==2022.8.31
 truststore==0.5.0
 unicodedata2==14.0.0
